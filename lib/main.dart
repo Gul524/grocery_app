@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app/configs/routes.dart';
 import 'package:grocery_app/configs/theme.dart';
+import 'package:grocery_app/pages/introPages/intro1.dart';
 
 void main() {
   runApp(App());

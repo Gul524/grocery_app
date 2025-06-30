@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app/configs/images.dart';
@@ -14,8 +16,10 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print(WidgetsBinding.instance.platformMenuDelegate);
-    WidgetsBinding.instance.addPostFrameCallback((_) => Get.toNamed("home"));
+    Timer(Duration(seconds: 2), () {
+      Get.toNamed("intro");
+    });
+  
   }
 
   @override

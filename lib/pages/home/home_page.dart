@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app/configs/colors.dart';
 import 'package:grocery_app/configs/images.dart';
+import 'package:grocery_app/shared/Custom_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -57,30 +58,12 @@ class HomePage extends StatelessWidget {
                         child: SizedBox(
                           width: 70,
                           height: 46,
-                          child: InkWell(
+                          child: CustomButton(
+                            label: "",
+                            isIconButton: true,
+                            isPrimaryButton: false,
+                            icon: Icons.shopping_cart_outlined,
                             onTap: () {},
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppColors.primaryColorDark,
-                                ),
-                                borderRadius: BorderRadius.circular(50),
-                                color: Theme.of(context).primaryColorLight,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black26,
-                                    blurRadius: 10,
-                                  ),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.shopping_cart_outlined,
-                                  color: AppColors.primaryColorDark,
-                                ),
-                              ),
-                            ),
                           ),
                         ),
                       ),
@@ -166,7 +149,27 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 80,
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
+              ),
+              itemCount: 8,
+              itemBuilder: (context, index) {
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.yellow.shade200,
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
