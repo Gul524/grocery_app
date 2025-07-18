@@ -1,27 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:grocery_app/configs/colors.dart';
 import 'package:grocery_app/configs/font_styles.dart';
 import 'package:grocery_app/configs/images.dart';
 import 'package:grocery_app/shared/custom_button.dart';
+import 'package:grocery_app/shared/linear_background.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          tileMode: TileMode.clamp,
-          colors: [
-            AppColors.primaryColorExtraLight,
-            Theme.of(context).primaryColorLight,
-          ],
-        ),
-      ),
+    return LinearBackground(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
@@ -35,25 +24,26 @@ class IntroPage extends StatelessWidget {
             SizedBox(height: 20),
             Text(
               "Get Your Groceries",
-              style: AppFontsStyle.largeHeadingBold(context, true),
+              style: AppFontsStyle.largeHeadingBold(context, isBold: true),
             ),
             Text(
               "Delivered to your Door Step",
-              style: AppFontsStyle.largeHeadingBold(context, true),
+              style: AppFontsStyle.largeHeadingBold(context, isBold: true),
             ),
             SizedBox(height: 10),
             Text(
               "we delivery fresh grocery to you",
-              style: AppFontsStyle.mediumHeadingBold(context, false),
+              style: AppFontsStyle.mediumHeadingBold(context, isBold: false),
             ),
             SizedBox(height: 60),
             CustomButton(
               label: "Shop Now",
               onTap: () {
-                Get.toNamed("login");
+                Get.offNamed("login");
               },
               fontSize: 14,
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 28),
+              isCenterLabel: false,
             ),
             SizedBox(height: 60),
             Image.asset(AppImages.fruitIntroPage),

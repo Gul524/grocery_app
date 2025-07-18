@@ -7,6 +7,7 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onTap;
   final bool isIconButton;
   final bool isPrimaryButton;
+  final bool isCenterLabel;
   final double fontSize;
   final EdgeInsetsGeometry padding;
   const CustomButton({
@@ -18,6 +19,7 @@ class CustomButton extends StatelessWidget {
     this.isPrimaryButton = true,
     this.fontSize = 14,
     this.padding = const EdgeInsets.all(8),
+    this.isCenterLabel = true,
   });
 
   @override
@@ -40,29 +42,32 @@ class CustomButton extends StatelessWidget {
         child: Padding(
           padding: padding,
           child:
-              //  Center(
-              //   child:
-              (isIconButton)
-                  ? Icon(
-                    icon,
-                    color:
-                        (isPrimaryButton)
-                            ? Theme.of(context).primaryColorLight
-                            : AppColors.primaryColorDark,
-                  )
-                  : Text(
-                    label,
-                    style: TextStyle(
-                      fontSize: fontSize,
-                      color:
-                          (isPrimaryButton)
-                              ? Theme.of(context).primaryColorLight
-                              : AppColors.primaryColorDark,
-                    ),
-                  ),
+              isCenterLabel
+                  ? Center(child: labelWidget(context))
+                  : labelWidget(context),
         ),
       ),
-      // ),
     );
+  }
+
+  Widget labelWidget(BuildContext context) {
+    return (isIconButton)
+        ? Icon(
+          icon,
+          color:
+              (isPrimaryButton)
+                  ? Theme.of(context).primaryColorLight
+                  : AppColors.primaryColorDark,
+        )
+        : Text(
+          label,
+          style: TextStyle(
+            fontSize: fontSize,
+            color:
+                (isPrimaryButton)
+                    ? Theme.of(context).primaryColorLight
+                    : AppColors.primaryColorDark,
+          ),
+        );
   }
 }
