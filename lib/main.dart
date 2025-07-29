@@ -1,10 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app/configs/routes.dart';
 import 'package:grocery_app/configs/theme.dart';
-import 'package:grocery_app/pages/introPages/intro1.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(App());
 }
 

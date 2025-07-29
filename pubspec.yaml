@@ -14,12 +14,16 @@ dependencies:
   get: ^4.7.2
   flutter_thermal_printer: ^1.2.1+1
   firebase_core: ^3.15.1
+  cloud_firestore: ^5.6.12
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^5.0.0
+  json_serializable: ^6.9.5
+  build_runner: ^2.5.4
 
 flutter:
 

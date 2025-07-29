@@ -1,3 +1,27 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'model.g.dart'; // GENERATED FILE
+
+@JsonSerializable()
+class Category {
+  int id;
+  String name;
+  List<Product> products;
+
+  Category({this.id = 0, this.name = "", this.products = const []});
+
+  Category copyWith({int? id, String? name, List<Product>? products}) {
+    return Category(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      products: products ?? this.products,
+    );
+  }
+
+  factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);
+  Map<String, dynamic> toJson() => _$CategoryToJson(this);
+}
+
+@JsonSerializable()
 class Product {
   int id;
   int categoryId;
@@ -48,8 +72,12 @@ class Product {
       discountAmount: discountAmount ?? this.discountAmount,
     );
   }
+
+  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+  Map<String, dynamic> toJson() => _$ProductToJson(this);
 }
 
+@JsonSerializable()
 class ProductSize {
   int id;
   String name;
@@ -59,13 +87,17 @@ class ProductSize {
 
   ProductSize copyWith({int? id, String? name, double? extraAmount}) {
     return ProductSize(
-    id : id ?? this.id,
-    name: name ?? this.name,
-    extraAmount: extraAmount ?? this.extraAmount
+      id: id ?? this.id,
+      name: name ?? this.name,
+      extraAmount: extraAmount ?? this.extraAmount,
     );
   }
+
+  factory ProductSize.fromJson(Map<String, dynamic> json) => _$ProductSizeFromJson(json);
+  Map<String, dynamic> toJson() => _$ProductSizeToJson(this);
 }
 
+@JsonSerializable()
 class ProductFlavour {
   int id;
   String name;
@@ -75,9 +107,12 @@ class ProductFlavour {
 
   ProductFlavour copyWith({int? id, String? name, double? extraAmount}) {
     return ProductFlavour(
-    id : id ?? this.id,
-    name: name ?? this.name,
-    extraAmount: extraAmount ?? this.extraAmount
+      id: id ?? this.id,
+      name: name ?? this.name,
+      extraAmount: extraAmount ?? this.extraAmount,
     );
   }
+
+  factory ProductFlavour.fromJson(Map<String, dynamic> json) => _$ProductFlavourFromJson(json);
+  Map<String, dynamic> toJson() => _$ProductFlavourToJson(this);
 }
