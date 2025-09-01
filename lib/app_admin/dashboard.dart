@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:grocery_app/app_admin/admin_controller.dart';
 import 'package:grocery_app/configs/colors.dart';
 import 'package:grocery_app/configs/font_styles.dart';
+import 'package:grocery_app/services/Admin_service.dart';
 
 class AdminDashBoard extends StatefulWidget {
   const AdminDashBoard({super.key});
@@ -18,6 +19,7 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
     // TODO: implement initState
     super.initState();
     controller = Get.put(DashboardController());
+    Get.put(AdminService());
   }
 
   @override

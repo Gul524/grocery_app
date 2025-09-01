@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/configs/colors.dart';
+import 'package:grocery_app/configs/font_styles.dart';
 
 class SearchField extends StatelessWidget {
   final TextEditingController controller;
@@ -18,7 +19,9 @@ class SearchField extends StatelessWidget {
       controller: controller,
       cursorColor: AppColors.primaryColorLight,
       onChanged: onChange,
+      style: AppFontsStyle.mediumHeadingBold(context, isBold: false),
       decoration: InputDecoration(
+        hintStyle: AppFontsStyle.mediumHeadingBold(context, isBold: false),
         prefixIcon: Icon(
           Icons.search,
           color: Theme.of(context).primaryColorDark,
