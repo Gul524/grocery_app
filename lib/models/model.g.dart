@@ -6,6 +6,22 @@ part of 'model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+Deal _$DealFromJson(Map<String, dynamic> json) => Deal(
+  id: json['id'] as String? ?? "0",
+  name: json['name'] as String? ?? "",
+  items:
+      (json['items'] as List<dynamic>?)
+          ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
+);
+
+Map<String, dynamic> _$DealToJson(Deal instance) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'items': instance.items,
+};
+
 Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
   id: json['id'] as String? ?? "0",
   name: json['name'] as String? ?? "",
@@ -133,7 +149,6 @@ Map<String, dynamic> _$CustomerToJson(Customer instance) => <String, dynamic>{
 
 Order _$OrderFromJson(Map<String, dynamic> json) => Order(
   id: json['id'] as String? ?? "0",
-  customerId: json['customerId'] as String? ?? "",
   customer: Customer.fromJson(json['customer'] as Map<String, dynamic>),
   items:
       (json['items'] as List<dynamic>?)
@@ -153,12 +168,21 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       json['deliveredTime'] == null
           ? null
           : DateTime.parse(json['deliveredTime'] as String),
-);
+  customerName: json['customerName'] as String? ?? "",
+  customerPhone: json['customerPhone'] as String? ?? "",
+  customerAddress:
+      json['customerAddress'] == null
+          ? null
+          : Address.fromJson(json['customerAddress'] as Map<String, dynamic>),
+)..instructions = json['instructions'] as String?;
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
   'id': instance.id,
-  'customerId': instance.customerId,
   'customer': instance.customer.toJson(),
+  'customerName': instance.customerName,
+  'customerPhone': instance.customerPhone,
+  'customerAddress': instance.customerAddress?.toJson(),
+  'instructions': instance.instructions,
   'items': instance.items.map((e) => e.toJson()).toList(),
   'status': instance.status,
   'totalAmount': instance.totalAmount,
@@ -179,6 +203,11 @@ Branch _$BranchFromJson(Map<String, dynamic> json) => Branch(
       const [],
   address: json['address'] as String? ?? "",
   phoneNumber: json['phoneNumber'] as String? ?? "",
+  areas:
+      (json['areas'] as List<dynamic>?)
+          ?.map((e) => Area.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$BranchToJson(Branch instance) => <String, dynamic>{
@@ -189,4 +218,31 @@ Map<String, dynamic> _$BranchToJson(Branch instance) => <String, dynamic>{
   'closeOnDay': instance.closeOnDay,
   'address': instance.address,
   'phoneNumber': instance.phoneNumber,
+  'areas': instance.areas,
+};
+
+Area _$AreaFromJson(Map<String, dynamic> json) =>
+    Area(id: json['id'] as String? ?? "0", name: json['name'] as String? ?? "");
+
+Map<String, dynamic> _$AreaToJson(Area instance) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+};
+
+Rider _$RiderFromJson(Map<String, dynamic> json) => Rider(
+  id: json['id'] as String? ?? "0",
+  name: json['name'] as String? ?? "",
+  phone: json['phone'] as String? ?? "",
+  phone2: json['phone2'] as String? ?? "",
+  cnic: json['cnic'] as String? ?? "",
+  image: stringToUint8(json['image'] as String?),
+);
+
+Map<String, dynamic> _$RiderToJson(Rider instance) => <String, dynamic>{
+  'id': instance.id,
+  'name': instance.name,
+  'phone': instance.phone,
+  'phone2': instance.phone2,
+  'cnic': instance.cnic,
+  'image': uint8ToString(instance.image),
 };

@@ -4,6 +4,36 @@ import 'dart:typed_data';
 import 'package:json_annotation/json_annotation.dart';
 part 'model.g.dart'; // GENERATED FILE
 
+
+@JsonSerializable()
+class Deal {
+  String id;
+  String name;
+  List<Product> items;
+
+  Deal({
+    this.id = "0",
+    this.name = "",
+    this.items = const [],
+  });
+
+  Deal copyWith({
+    String? id,
+    String? name,
+    List<Product>? items,
+  }) {
+    return Deal(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      items: items ?? this.items,
+    );
+  }
+
+  factory Deal.fromJson(Map<String, dynamic> json) => _$DealFromJson(json);
+  Map<String, dynamic> toJson() => _$DealToJson(this);
+}
+
+
 @JsonSerializable()
 class Category {
   String id;
@@ -246,8 +276,11 @@ class Customer {
 @JsonSerializable(explicitToJson: true)
 class Order {
   String id;
-  String customerId;
   Customer customer;
+  String customerName;
+  String customerPhone;
+  Address? customerAddress;
+  String? instructions;
   List<Product> items;
   String status;
   double totalAmount;
@@ -257,7 +290,6 @@ class Order {
 
   Order({
     this.id = "0",
-    this.customerId = "",
     required this.customer,
     this.items = const [],
     this.totalAmount = 0.0,
@@ -265,6 +297,9 @@ class Order {
     required this.paymentMode,
     this.orderTime,
     this.deliveredTime,
+    this.customerName = "",
+    this.customerPhone = "",
+    this.customerAddress,
   });
 
   Order copyWith({
@@ -280,7 +315,6 @@ class Order {
   }) {
     return Order(
       id: id ?? this.id,
-      customerId: customerId ?? this.customerId,
       customer: customer ?? this.customer,
       items: items ?? this.items,
       totalAmount: totalAmount ?? this.totalAmount,
@@ -305,6 +339,7 @@ class Branch {
   List<String> closeOnDay;
   String address;
   String phoneNumber;
+  List<Area> areas;
 
   Branch({
     this.id = "0",
@@ -314,6 +349,7 @@ class Branch {
     this.closeOnDay = const [],
     this.address = "",
     this.phoneNumber = "",
+    this.areas = const [],
   });
 
   Branch copyWith({
@@ -324,6 +360,7 @@ class Branch {
     List<String>? closeOnDay,
     String? address,
     String? phoneNumber,
+    List<Area>? areas,
   }) {
     return Branch(
       id: id ?? this.id,
@@ -333,12 +370,68 @@ class Branch {
       closeOnDay: closeOnDay ?? this.closeOnDay,
       address: address ?? this.address,
       phoneNumber: phoneNumber ?? this.phoneNumber,
+      areas: areas ?? this.areas,
     );
   }
 
   factory Branch.fromJson(Map<String, dynamic> json) => _$BranchFromJson(json);
 
   Map<String, dynamic> toJson() => _$BranchToJson(this);
+}
+
+@JsonSerializable()
+class Area {
+  String id;
+  String name;
+  Area({this.id = "0", this.name = ""});
+
+  Area copyWith({String? id, String? name}) {
+    return Area(id: id ?? this.id, name: name ?? this.name);
+  }
+
+  factory Area.fromJson(Map<String, dynamic> json) => _$AreaFromJson(json);
+  Map<String, dynamic> toJson() => _$AreaToJson(this);
+}
+
+@JsonSerializable()
+class Rider {
+  String id;
+  String name;
+  String phone;
+  String phone2;
+  String cnic;
+  @JsonKey(fromJson: stringToUint8, toJson: uint8ToString)
+  Uint8List?  image; // image url or base64 string
+
+  Rider({
+    this.id = "0",
+    this.name = "",
+    this.phone = "",
+    this.phone2 = "",
+    this.cnic = "",
+    this.image ,
+  });
+
+  Rider copyWith({
+    String? id,
+    String? name,
+    String? phone,
+    String? phone2,
+    String? cnic,
+    Uint8List? image,
+  }) {
+    return Rider(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      phone: phone ?? this.phone,
+      phone2: phone2 ?? this.phone2,
+      cnic: cnic ?? this.cnic,
+      image: image ?? this.image,
+    );
+  }
+
+  factory Rider.fromJson(Map<String, dynamic> json) => _$RiderFromJson(json);
+  Map<String, dynamic> toJson() => _$RiderToJson(this);
 }
 
 String? uint8ToString(Uint8List? list) =>
